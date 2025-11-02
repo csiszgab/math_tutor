@@ -1,0 +1,47 @@
+import random as rd
+
+def init():
+    cards8 = ((0,0,0),(1,0,0),(0,1,0),(0,0,1),(1,1,0),(1,0,1),(0,1,1),(1,1,1))
+    cards7 = cards8[1:8]
+
+    return cards7
+
+def choose4():
+    cards4=rd.sample(cards7,4)
+    return cards4
+
+def card_addition(card1,card2):
+    res_card=[]
+    for i in range(0,3):
+        res_card.append((card1[i]+card2[i])%2)
+    return res_card
+
+def is_triad(cards3):
+    res_card=card_addition(card_addition(cards3[0],cards3[1]),cards3[2])
+    print(res_card)
+    if  res_card == [0,0,0]:
+        return True
+    else:
+        return False
+    
+def is_tetrad(cards4):
+    res_card=card_addition(card_addition(card_addition(cards4[0],cards4[1]),cards4[2]),cards4[3])
+    print(res_card)
+    if  res_card == [0,0,0]:
+        return True
+    else:
+        return False
+
+cards7=init()
+print(cards7[0])
+cards_sample4=choose4()
+print(cards_sample4)
+print(is_tetrad(cards_sample4))
+print(str(cards7[1]) + "+" + str(cards7[2]) + str(card_addition(cards7[1],cards7[2])))
+print(cards7[1])
+print(cards7[2])
+print(cards7[4])
+print(is_triad([cards7[0],cards7[1],cards7[3]]))
+print(is_triad([cards7[1],cards7[2],cards7[4]]))
+print(is_tetrad([cards7[2],cards7[4],cards7[5],cards7[6]]))
+print(is_tetrad([cards7[2],cards7[3],cards7[5],cards7[6]]))
